@@ -10,6 +10,7 @@
 
 \newcommand{\notefont}[0]{}
 \newcommand{\expansionlabelfont}[0]{}
+\newcommand{\usecjkfontfallback}[0]{}
 
 \directlua{
   luaotfload.add_fallback(
@@ -21,14 +22,21 @@
 }
 
 \AtBeginDocument{%
+  \defaultfontfeatures{Ligatures=TeX,RawFeature={fallback=cjkfallback}}%
   \setmainfont{LiberationSerif}[
     Path = ./assets/fonts/LiberationSerif/,
     Extension = .ttf,
     UprightFont = *-Regular,
     ItalicFont = *-Italic,
-    BoldFont = *-Bold,
-    BoldItalicFont = *-BoldItalic,
-    RawFeature={fallback=cjkfallback}
+    BoldFont = ../NotoSerifCJKsc/NotoSerifCJKsc-Regular.otf,
+    BoldItalicFont = ../NotoSerifCJKsc/NotoSerifCJKsc-Regular.otf,
+    AutoFakeBold = 2,
+    AutoFakeSlant = 0.2,
+    RawFeature={fallback=cjkfallback},
+    UprightFeatures={RawFeature={fallback=cjkfallback}},
+    ItalicFeatures={RawFeature={fallback=cjkfallback}},
+    BoldFeatures={RawFeature={fallback=cjkfallback}},
+    BoldItalicFeatures={RawFeature={fallback=cjkfallback}}
   ]%
 }
 

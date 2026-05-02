@@ -404,23 +404,46 @@
 }
 
 % Set fonts for section headings and notes
-\newfontfamily{\liberation}[
-  Path = ./assets/fonts/LiberationSerif/,
-  Extension = .ttf,
-  UprightFont = *-Regular,
-  ItalicFont = *-Italic,
-  BoldFont = *-Bold,
-  BoldItalicFont = *-BoldItalic,
-]{LiberationSerif}
-% Sets fonts for subheaders small caps
-\newfontfamily{\newcomputermodern}[
-  Path = ./assets/fonts/newcomputermodern/,
-  Extension = .otf,
-  UprightFont = *-Regular,
-  ItalicFont = *-Italic,
-  BoldFont = *-Bold,
-  BoldItalicFont = *-BoldItalic,
-]{NewCM10}
+\ifdefined\usecjkfontfallback
+  \newfontfamily{\liberation}[
+    Path = ./assets/fonts/NotoSerifCJKsc/,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    ItalicFont = *-Regular,
+    BoldFont = *-Regular,
+    BoldItalicFont = *-Regular,
+    AutoFakeBold = 2,
+    AutoFakeSlant = 0.2,
+  ]{NotoSerifCJKsc}
+  \newfontfamily{\newcomputermodern}[
+    Path = ./assets/fonts/NotoSerifCJKsc/,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    ItalicFont = *-Regular,
+    BoldFont = *-Regular,
+    BoldItalicFont = *-Regular,
+    AutoFakeBold = 2,
+    AutoFakeSlant = 0.2,
+  ]{NotoSerifCJKsc}
+\else
+  \newfontfamily{\liberation}[
+    Path = ./assets/fonts/LiberationSerif/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    ItalicFont = *-Italic,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+  ]{LiberationSerif}
+  % Sets fonts for subheaders small caps
+  \newfontfamily{\newcomputermodern}[
+    Path = ./assets/fonts/newcomputermodern/,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    ItalicFont = *-Italic,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+  ]{NewCM10}
+\fi
 
 \providecommand{\notefont}[0]{\liberation\selectfont}
 \providecommand{\expansionlabelfont}[0]{}
