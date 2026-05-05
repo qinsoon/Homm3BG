@@ -38,6 +38,8 @@ msgid ""
 "\\pagetarget{Rounds}{\\addsection{Round Structure}{\\spells/"
 "forgetfulness.png}}"
 msgstr ""
+"\\pagetarget{Rounds}{\\addsection{回合结构}{\\spells/"
+"forgetfulness.png}}"
 
 #. type: multicols*
 #: sections/round_structure.tex:40
@@ -120,6 +122,23 @@ msgid ""
 "\\centering\n"
 "\\begin{tikzpicture}\n"
 msgstr ""
+"    \\node (card) [inner sep=0] {\\makebox[\\linewidth][c]{\\includegraphics[width=\\linewidth]{\\cards/event.png}}};\n"
+"    \\begin{relcoords}{card}\n"
+"      \\draw (0.6, 0.81) node {\\encircle{1}};\n"
+"      \\draw (0.9, 0.61) node {\\encircle{2}};\n"
+"      \\draw (0.88, 0.26) node {\\encircle{3}};\n"
+"    \\end{relcoords}\n"
+"  \\end{tikzpicture}\n"
+"  \\medskip\n"
+"  \\footnotesize\n"
+"  \\imagecaption{事件牌}\n"
+"  \\end{minipage}\n"
+"\\end{expansion}\n"
+"\\bigskip\n"
+"\\begin{minipage}[h]{\\linewidth}\n"
+"\\vspace{0.1pt}\n"
+"\\centering\n"
+"\\begin{tikzpicture}\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:81
@@ -143,6 +162,23 @@ msgid ""
 "  \\item[\\textbf{\\phantom{.}}] \\phantom{.}\n"
 "  \\end{itemize}"
 msgstr ""
+"  \\node (card) [inner sep=0] {\\makebox[\\linewidth][c]{\\includegraphics[width=\\linewidth]{\\cards/astrolog.png}}};\n"
+"  \\begin{relcoords}{card}\n"
+"    \\draw (0.82, 0.78) node {\\encircle{1}};\n"
+"    \\draw (0.88, 0.2) node {\\encircle{2}};\n"
+"    \\draw (0.85, 0.48) node {\\encircle{3}};\n"
+"  \\end{relcoords}\n"
+"\\end{tikzpicture}\n"
+"\\medskip\n"
+"\\footnotesize\n"
+"\\imagecaption{占星家宣告牌}\n"
+"\\begin{multicols}{2}\n"
+"  \\begin{itemize}\n"
+"  \\item[\\textbf{1.}] 名称\n"
+"  \\item[\\textbf{2.}] 背景文字\n"
+"  \\item[\\textbf{3.}] 效果\n"
+"  \\item[\\textbf{\\phantom{.}}] \\phantom{.}\n"
+"  \\end{itemize}"
 
 #. type: multicols*
 #: sections/round_structure.tex:85
@@ -161,6 +197,8 @@ msgid ""
 "\\subsection*{Turn Order}\n"
 "\n"
 msgstr ""
+"\\subsection*{回合顺序}\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:91
@@ -171,6 +209,10 @@ msgid ""
 "Keep playing new Rounds until any of the Scenario's ending conditions have been met.\n"
 "\n"
 msgstr ""
+"回合开始后，玩家按照下一节所述，以顺时针顺序进行自己的回合。\n"
+"所有玩家都完成自己的回合后，将回合轨道上的黑色方块向前移动一格，并再次执行回合开始步骤。\n"
+"继续进行新的回合，直到满足任意剧本结束条件。\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:96
@@ -182,6 +224,11 @@ msgid ""
 "}\n"
 "\n"
 msgstr ""
+"\\note{6}{\n"
+"  在\\textbf{同盟游戏}中，队伍交替轮流行动。\n"
+"  在你队伍本轮的第一个回合开始时，选择该轮中谁最先行动、谁最后行动。\n"
+"}\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:98
@@ -190,6 +237,8 @@ msgid ""
 "\\subsection*{Example Round}\n"
 "\n"
 msgstr ""
+"\\subsection*{示例回合}\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:103
@@ -201,6 +250,11 @@ msgid ""
 "}\\par\n"
 "\n"
 msgstr ""
+"\\textit{Alice正在使用塔楼阵营，对阵使用地下城阵营的Bob。\n"
+"Alice是起始玩家。\n"
+"他们即将开始第\\nth{5}回合。\n"
+"}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:107
@@ -211,6 +265,10 @@ msgid ""
 "Both players also regain the use of their Expert Effects \\svg{expert}.}\\par\n"
 "\n"
 msgstr ""
+"\\textit{在其他任何事项之前，双方玩家将其建造、人口和法术书标记翻回启用面。\n"
+"所有移动标记都翻回其启用的绿色~\\svg[12]{movement_token_green} 面。\n"
+"双方玩家也重新获得其专家效果 \\svg{expert} 的使用。}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:110
@@ -220,6 +278,9 @@ msgid ""
 "Both players collect income from their Buildings, Mines, and Settlements.}\\par\n"
 "\n"
 msgstr ""
+"\\textit{第5回合是奇数回合，且不是第一回合，因此它是一个\\textbf{资源回合}。\n"
+"双方玩家从其建筑、矿场和定居点收取收入。}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:117
@@ -233,6 +294,13 @@ msgid ""
 "}\\par\n"
 "\n"
 msgstr ""
+"\\textit{由于 Alice 和 Bob 都已建造了市政厅，他们结算各自的``每个资源轮开始时''效果。\n"
+"\\wikilink{/towns/tower/\\#fully-built}{塔楼市政厅}允许 Alice 获得 4~\\svg{gold}，或从她的牌堆抽一张牌。\n"
+"她选择后者。\n"
+"\\wikilink{/towns/dungeon/\\#fully-built}{地下城市政厅}给予 Bob 额外获得 5~\\svg{gold} 或 1~\\svg{valuables} 的选项。\n"
+"Bob 选择前者。\n"
+"}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:122
@@ -243,6 +311,10 @@ msgid ""
 "  The drawing responsibility rotates clockwise after each Event: Alice, as the starting player, drew the first Event back in Round 3.}\\par\n"
 "\n"
 msgstr ""
+"\\begin{expansion}{fortress}\n"
+"\\textit{由于这是资源回合，现在应从事件牌堆中抽取一张事件牌。\n"
+"  每次事件后，抽牌职责按顺时针方向轮换：Alice作为起始玩家，早在第3回合就抽取了第一个事件。}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:126
@@ -253,6 +325,10 @@ msgid ""
 "\\textit{It is therefore Bob's turn to draw. He takes the top card from the Event Deck, reads it aloud, and places it face-up so both players can see: it is \\textbf{Artifact Merchant} (see the Event card on the previous page).}\\par\n"
 "\n"
 msgstr ""
+"\\end{expansion}\n"
+"\\begin{expansion}{fortress}\n"
+"\\textit{因此轮到鲍勃抓牌。他从事件牌堆顶拿取一张牌，大声读出，并将其正面朝上放置，让双方玩家都能看到：它是\\textbf{宝物商人}（见前一页的事件牌）。}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:138
@@ -271,6 +347,18 @@ msgid ""
 "\\end{expansion}\n"
 "\n"
 msgstr ""
+"\\vspace*{0.5em}\n"
+"\\textit{鲍勃从神器牌堆顶抽取5张牌，并向双方玩家展示。\n"
+"其中有一件高级神器——\\wikilink{artifacts/head_of_legion}{军团之首。}\n"
+"鲍勃先行动，因为他是抽到该事件的玩家。\n"
+"  他立即购买军团之首，支付5~\\svg{gold}（把来自市政厅的金币派上了用场），并将其加入自己的牌堆。\n"
+"他将剩余的牌传给爱丽丝。\n"
+"爱丽丝原本也想要军团之首，但它已经被拿走了。\n"
+"她对剩余的牌不感兴趣，因此她选择跳过。\n"
+"由于这些牌现在已经回到抽取它们的玩家手中，该事件结束。\n"
+"剩余的神器洗回神器牌堆。}\\par\n"
+"\\end{expansion}\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:143
@@ -282,6 +370,11 @@ msgid ""
 "Because Alice controls both a Main Hero and a Secondary Hero, \\textbf{both} of them benefit -- their movement goes to 4 and 3, respectively.}\\par\n"
 "\n"
 msgstr ""
+"\\vspace*{0.5em}\n"
+"\\textit{第5回合在回合轨道上也标有一个定时事件：场景指定所有英雄在本回合获得+1~\\svg{movement}。\n"
+"Bob只控制他的主英雄，因此只添加1点额外移动点，使其\\svg{movement}从3增加到4。\n"
+"由于Alice同时控制一名主英雄和一名副英雄，\\textbf{两者}都受益——他们的移动力分别变为4和3。}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:145
@@ -290,6 +383,8 @@ msgid ""
 "\\textit{As a starting player, Alice now starts her Turn.}\\par\n"
 "\n"
 msgstr ""
+"\\textit{作为起始玩家，Alice 现在开始她的回合。}\\par\n"
+"\n"
 
 #. type: multicols*
 #: sections/round_structure.tex:151
