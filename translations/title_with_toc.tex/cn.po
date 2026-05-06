@@ -33,7 +33,7 @@ msgstr "规则书重写"
 #. type: tabular
 #: sections/title_with_toc.tex:12
 msgid "Hermanni Karppela"
-msgstr "赫尔曼尼·卡尔佩拉"
+msgstr ""
 
 #. type: tabular
 #: sections/title_with_toc.tex:12
