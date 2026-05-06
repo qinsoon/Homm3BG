@@ -8,6 +8,7 @@ VERSION=$(cat .version)
 FILE_VERSION=$(echo "${VERSION}" | tr . _)
 
 declare -A languages=(
+  ["cn"]="Zhongwen"
   ["en"]="English"
   ["pl"]="Polski"
   ["es"]="Espanol"

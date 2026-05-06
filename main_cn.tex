@@ -3,7 +3,7 @@
 
 % Language setting
 \usepackage[TU]{fontenc}
-\usepackage[english]{babel}
+\usepackage[chinese, provide=*]{babel}
 \usepackage{fontspec}
 
 \def\sections{sections/translated/cn}
@@ -19,7 +19,39 @@
       "[./assets/fonts/NotoSerifCJKsc/NotoSerifCJKsc-Regular.otf]:mode=node"
     }
   )
+  luaotfload.add_fallback(
+    "cjkfallbackbold",
+    {
+      "[./assets/fonts/NotoSerifCJKsc/NotoSerifCJKsc-Bold.otf]:mode=node"
+    }
+  )
+  luaotfload.add_fallback(
+    "cjkfallbackitalic",
+    {
+      "[./assets/fonts/NotoSerifCJKsc/NotoSerifCJKsc-Regular.otf]:mode=node;slant=0.2"
+    }
+  )
 }
+
+\babelfont[chinese]{rm}[
+  Path = ./assets/fonts/NotoSerifCJKsc/,
+  Extension = .otf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Regular,
+  BoldItalicFont = *-Bold
+]{NotoSerifCJKsc}
+
+\newfontfamily{\cjkserif}[
+  Path = ./assets/fonts/NotoSerifCJKsc/,
+  Extension = .otf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Regular,
+  BoldItalicFont = *-Bold
+]{NotoSerifCJKsc}
+
+\newcommand{\subheaderfont}[0]{\cjkserif}
 
 \AtBeginDocument{%
   \defaultfontfeatures{Ligatures=TeX,RawFeature={fallback=cjkfallback}}%
@@ -28,15 +60,12 @@
     Extension = .ttf,
     UprightFont = *-Regular,
     ItalicFont = *-Italic,
-    BoldFont = ../NotoSerifCJKsc/NotoSerifCJKsc-Regular.otf,
-    BoldItalicFont = ../NotoSerifCJKsc/NotoSerifCJKsc-Regular.otf,
-    AutoFakeBold = 2,
-    AutoFakeSlant = 0.2,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
     RawFeature={fallback=cjkfallback},
-    UprightFeatures={RawFeature={fallback=cjkfallback}},
-    ItalicFeatures={RawFeature={fallback=cjkfallback}},
-    BoldFeatures={RawFeature={fallback=cjkfallback}},
-    BoldItalicFeatures={RawFeature={fallback=cjkfallback}}
+    BoldFeatures={RawFeature={fallback=cjkfallbackbold}},
+    ItalicFeatures={RawFeature={fallback=cjkfallbackitalic}},
+    BoldItalicFeatures={RawFeature={fallback=cjkfallbackbold}}
   ]%
 }
 
