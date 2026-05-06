@@ -33,7 +33,7 @@ msgstr "规则书重写"
 #. type: tabular
 #: sections/title_with_toc.tex:12
 msgid "Hermanni Karppela"
-msgstr ""
+msgstr "赫尔曼尼·卡尔佩拉"
 
 #. type: tabular
 #: sections/title_with_toc.tex:12
@@ -161,6 +161,15 @@ msgid ""
 "several different Factions, led by their Heroes, battle for supremacy.  "
 "Choose your Faction and Hero and banish your unruly enemies from these lands!"
 msgstr ""
+"\\AddToHookNext{shipout/background}{\\iftoggle{noartbackground}{}{ \\put "
+"(\\iftoggle{printable}{0.005\\paperwidth}"
+"{0.03\\paperwidth},-0.75\\paperheight){\\transparent{0.15}"
+"{\\includegraphics[width=0.9\\paperwidth]{\\art/"
+"minotaur_crusader_skeleton.png}}}}\\iftoggle{printable}{ \\drawbottom }"
+"{\\put (0in,-\\paperheight)"
+"{\\includegraphics[width=\\paperwidth,height=0.05\\paperheight]{\\layout/"
+"bottom.png}}} } \\vspace*{\\fill} 安塔加瑞奇大陆正陷于战争，数个不同的阵营在其英雄的率领下，为至高统治而战。  "
+"选择你的阵营和英雄，将你桀骜不驯的敌人从这片土地上驱逐出去！"
 
 #.  Source: https://heroes.thelazy.net/index.php/Restoration_of_Erathia_Manual_Page_84
 #. type: Plain text
@@ -169,6 +178,8 @@ msgid ""
 "\\textbf{Castle:} Human armies rallied under the banners of Clerics and "
 "Knights, bolstered by the might of Griffins and protected by Angels."
 msgstr ""
+"\\textbf{城堡：} 人类军队聚集在牧师与骑士的旗帜下，"
+"由狮鹫的力量强化，并受天使保护。"
 
 #.  Source: https://heroes.thelazy.net/index.php/Restoration_of_Erathia_Manual_Page_88
 #. type: Plain text
@@ -177,6 +188,8 @@ msgid ""
 "\\textbf{Dungeon:} Subterranean forces led by Warlocks and Overlords, "
 "wielding dark magic and bending fearsome creatures to their will."
 msgstr ""
+"\\textbf{地下城：} 由术士和霸主领导的地下势力，"
+"施展黑暗魔法，并迫使可怖生物服从其意志。"
 
 #.  Source: https://heroes.thelazy.net/index.php/Restoration_of_Erathia_Manual_Page_100
 #. type: Plain text
@@ -185,6 +198,8 @@ msgid ""
 "\\textbf{Necropolis:} Legions of the undead, commanded by Necromancers and "
 "Death Knights, who sap the strength of the living to fuel their own."
 msgstr ""
+"\\textbf{墓园：} 由死灵法师和"
+"死亡骑士统领的亡灵军团，他们吸取生者的力量以供养自身。"
 
 #. type: Plain text
 #: sections/title_with_toc.tex:91
