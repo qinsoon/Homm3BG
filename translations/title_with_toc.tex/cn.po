@@ -168,7 +168,7 @@ msgstr ""
 "minotaur_crusader_skeleton.png}}}}\\iftoggle{printable}{ \\drawbottom }"
 "{\\put (0in,-\\paperheight)"
 "{\\includegraphics[width=\\paperwidth,height=0.05\\paperheight]{\\layout/"
-"bottom.png}}} } \\vspace*{\\fill} 安塔加瑞奇大陆陷入战争，数个不同阵营在各自英雄的率领下为霸权而战。  "
+"bottom.png}}} } \\vspace*{\\fill} 恩塔格瑞大陆陷入战争，数个不同阵营在各自英雄的率领下为霸权而战。  "
 "选择你的阵营和英雄，将你桀骜不驯的敌人从这片土地上驱逐出去!"
 
 #.  Source: https://heroes.thelazy.net/index.php/Restoration_of_Erathia_Manual_Page_84
