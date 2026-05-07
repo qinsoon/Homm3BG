@@ -58,7 +58,7 @@ msgid ""
 "A Campaign is a series of Scenarios designed for solo play.\n"
 "\n"
 msgstr ""
-"战役是一系列为单人游戏设计的场景。\n"
+"战役是一系列为单人游戏设计的剧本。\n"
 "\n"
 
 #. type: multicols*
