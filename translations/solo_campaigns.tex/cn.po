@@ -30,6 +30,8 @@ msgid ""
 "{2}\n"
 "\n"
 msgstr ""
+"{2}\n"
+"\n"
 
 #.  !TeX spellcheck = en_US
 #. type: Plain text
@@ -38,8 +40,7 @@ msgid ""
 "\\pagetarget{Campaign}{\\addsection{Solo Campaigns}{\\spells/"
 "town_portal.png}}"
 msgstr ""
-"\\pagetarget{Campaign}{\\addsection{单人战役}{\\spells/"
-"town_portal.png}}"
+"\\pagetarget{Campaign}{\\addsection{单人战役}{\\spells/town_portal.png}}"
 
 #. type: index{#1}
 #: sections/solo_campaigns.tex:5

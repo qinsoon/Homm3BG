@@ -30,6 +30,8 @@ msgid ""
 "{2}\n"
 "\n"
 msgstr ""
+"{2}\n"
+"\n"
 
 #.  !TeX spellcheck = en_US
 #. type: Plain text
@@ -38,8 +40,7 @@ msgid ""
 "\\pagetarget{Rounds}{\\addsection{Round Structure}{\\spells/"
 "forgetfulness.png}}"
 msgstr ""
-"\\pagetarget{Rounds}{\\addsection{轮次结构}{\\spells/"
-"forgetfulness.png}}"
+"\\pagetarget{Rounds}{\\addsection{轮次结构}{\\spells/forgetfulness.png}}"
 
 #. type: multicols*
 #: sections/round_structure.tex:40

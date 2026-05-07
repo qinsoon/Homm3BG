@@ -242,8 +242,7 @@ msgid ""
 "\\pagetarget{Statistic}{}\\pagetarget{Ability}{} \\subheader{Statistic and "
 "Ability Cards}"
 msgstr ""
-"\\pagetarget{Statistic}{}\\pagetarget{Ability}{} \\subheader{属性牌和"
-"能力牌}"
+"\\pagetarget{Statistic}{}\\pagetarget{Ability}{} \\subheader{属性牌和能力牌}"
 
 #. type: multicols
 #: sections/deckbuilding.tex:78
@@ -957,7 +956,7 @@ msgid ""
 "}\n"
 "\n"
 msgstr ""
-"{" "\n"
+"{\n"
 "    \\medskip\n"
 "    \\centering\n"
 "    \\includegraphics[width=0.7\\linewidth]{\\cards/specialty.png}\\\\\n"

@@ -21,8 +21,8 @@ msgid ""
 "\\pagetarget{Card Effect Keywords}{\\addsection{Card Effect Keywords}"
 "{\\skills/interference.png}}"
 msgstr ""
-"\\pagetarget{Card Effect Keywords}{\\addsection{卡牌效果关键词}"
-"{\\skills/interference.png}}"
+"\\pagetarget{Card Effect Keywords}{\\addsection{卡牌效果关键词}{\\skills/"
+"interference.png}}"
 
 #. type: Plain text
 #: sections/card_effect_keywords.tex:7
@@ -30,7 +30,9 @@ msgid ""
 "Most expansions add new cards to the game. Some of these cards use keywords "
 "with more elaborate rules and require specific game components.  This "
 "section provides the rules for these keywords."
-msgstr "大多数扩展包为游戏添加了新牌。其中一些牌使用了规则更为复杂的关键词，并需要特定的游戏组件。本节提供了这些关键词的规则。"
+msgstr ""
+"大多数扩展包为游戏添加了新牌。其中一些牌使用了规则更为复杂的关键词，并需要特"
+"定的游戏组件。本节提供了这些关键词的规则。"
 
 #. type: Plain text
 #: sections/card_effect_keywords.tex:9
@@ -43,7 +45,9 @@ msgid ""
 "Some Spell cards allow you to place \\textbf{Effects} or \\textbf{Summoned "
 "Units} on the Combat Board.  Use the corresponding Tokens to mark these "
 "spaces."
-msgstr "部分法术牌允许你在战斗板上放置\\textbf{效果}或\\textbf{召唤单位}。使用相应的标记来标示这些格。"
+msgstr ""
+"部分法术牌允许你在战斗板上放置\\textbf{效果}或\\textbf{召唤单位}。使用相应的"
+"标记来标示这些格。"
 
 #. type: expansion
 #: sections/card_effect_keywords.tex:33
@@ -625,8 +629,8 @@ msgid ""
 "The following components and keywords are used by certain unit abilities.  "
 "These Tokens are typically placed on other units to modify their statistics."
 msgstr ""
-"以下组件和关键词用于某些单位能力。  "
-"这些标记通常放置在其他单位上，以修改其属性。"
+"以下组件和关键词用于某些单位能力。  这些标记通常放置在其他单位上，以修改其属"
+"性。"
 
 #. type: multicols
 #: sections/card_effect_keywords.tex:263
@@ -785,9 +789,8 @@ msgid ""
 "ambiguous or misleading wording.  Fortunately, the developers have clarified "
 "many card effects."
 msgstr ""
-"\\textbf{英雄无敌3桌游版}中的许多卡牌文本表述"
-"存在歧义或误导性。  幸运的是，开发者已经澄清了许多卡牌"
-"效果。"
+"\\textbf{英雄无敌3桌游版}中的许多卡牌文本表述存在歧义或误导性。  幸运的是，开"
+"发者已经澄清了许多卡牌效果。"
 
 #. type: Plain text
 #: sections/card_effect_keywords.tex:315
@@ -797,5 +800,6 @@ msgid ""
 "have questions about specific cards, visit this website: "
 "\\mbox{\\href{https://en.homm3bg.wiki/}{https://en.homm3bg.wiki/}}"
 msgstr ""
-"社区维护着一个\\textbf{玩家自制Wiki}：其中收录了几乎所有游戏组件，并附有大量注释，以澄清特定规则。  如果你对特定卡牌有疑问，请访问此网站："
+"社区维护着一个\\textbf{玩家自制Wiki}：其中收录了几乎所有游戏组件，并附有大量"
+"注释，以澄清特定规则。  如果你对特定卡牌有疑问，请访问此网站："
 "\\mbox{\\href{https://en.homm3bg.wiki/}{https://en.homm3bg.wiki/}}"

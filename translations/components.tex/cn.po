@@ -29,8 +29,8 @@ msgid ""
 "of each individual component, please refer to the Archon's official content "
 "guide."
 msgstr ""
-"本指南直观展示了每个扩展中包含的所有组件。有关详细信息，包括每个单独组件的确切数"
-"量和图片，请参阅 Archon 官方内容指南。"
+"本指南直观展示了每个扩展中包含的所有组件。有关详细信息，包括每个单独组件的确"
+"切数量和图片，请参阅 Archon 官方内容指南。"
 
 #. type: figure
 #: sections/components.tex:35

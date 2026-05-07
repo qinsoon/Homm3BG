@@ -30,6 +30,8 @@ msgid ""
 "{2}\n"
 "\n"
 msgstr ""
+"{2}\n"
+"\n"
 
 #. type: Plain text
 #: sections/card_effect_keywords.tex:117 sections/card_effect_keywords.tex:202
@@ -37,7 +39,7 @@ msgstr ""
 #: sections/resources.tex:31
 #, no-wrap
 msgid "\\columnbreak"
-msgstr ""
+msgstr "\\columnbreak"
 
 #.  !TeX spellcheck = en_US
 #. type: Plain text
@@ -110,9 +112,7 @@ msgstr "\\imagecaption{资源生产轨道}"
 msgid ""
 "Possible Resource Die\\index{Resource Die}\\index{Dice} \\svg{resource_die} "
 "results:"
-msgstr ""
-"可能的资源骰\\index{资源骰}\\index{骰子} \\svg{resource_die} "
-"结果："
+msgstr "可能的资源骰\\index{资源骰}\\index{骰子} \\svg{resource_die} 结果："
 
 #. type: itemize
 #: sections/resources.tex:49

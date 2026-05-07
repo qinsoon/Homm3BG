@@ -22,8 +22,8 @@ msgid ""
 "\\pagetarget{Adventure and Skirmish Modes}{\\addsection{Battlefield}"
 "{\\spells/frenzy.png}}"
 msgstr ""
-"\\pagetarget{Adventure and Skirmish Modes}{\\addsection{战场}"
-"{\\spells/frenzy.png}}"
+"\\pagetarget{Adventure and Skirmish Modes}{\\addsection{战场}{\\spells/"
+"frenzy.png}}"
 
 #. type: index{#1}
 #: sections/battlefield.tex:6

@@ -30,6 +30,8 @@ msgid ""
 "{2}\n"
 "\n"
 msgstr ""
+"{2}\n"
+"\n"
 
 #. type: multicols*
 #: sections/battlefield.tex:94 sections/map_elements.tex:54
@@ -38,6 +40,8 @@ msgid ""
 "\\begin{center}\n"
 "  \\begin{tikzpicture}\n"
 msgstr ""
+"\\begin{center}\n"
+"  \\begin{tikzpicture}\n"
 
 #.  !TeX spellcheck = en_US
 #. type: Plain text
@@ -642,7 +646,8 @@ msgstr ""
 msgid ""
 "\\pagetarget{Discover Location Tokens}{\\subheader{Placing and Discovering "
 "Location Tokens}}"
-msgstr "\\pagetarget{Discover Location Tokens}{\\subheader{放置和发现地点标记}}"
+msgstr ""
+"\\pagetarget{Discover Location Tokens}{\\subheader{放置和发现地点标记}}"
 
 #. type: multicols
 #: sections/map_elements.tex:260
