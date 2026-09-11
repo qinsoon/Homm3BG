@@ -3,6 +3,8 @@ cache_dir="$(pwd)/cache"
 screenshots_dir="$(pwd)/screenshots"
 
 source tools/.language_base.sh
+mkdir -p "${screenshots_dir}"
+
 #
 # HELPER FUNCTIONS
 #
@@ -15,11 +17,22 @@ help() {
     <language>                      Specify the language for comparison (${valid_languages[*]}). Defaults to en.
       -r, --range <range>           Provide comma-separated list of pages or range of pages you want to compare,
                                     with optional target page where the range was moved to.
+                                    Mutually exclusive with '--all'.
+      -a, --all                     Compare every page of the document. Pages without a real difference
+                                    are skipped, so only pages that actually changed end up in the output.
+                                    Mutually exclusive with '--range'.
 
     Optional Arguments:
       -p, --printable               Compares your build against 'printable' build.
       -s, --single-page             Combines all compared pages into a single image.
       -o, --open                    Open directory with screenshots.
+      -d, --debug                   Open every comparison in a viewer the moment it is ready, instead of
+                                    waiting for the whole run to finish. One window per changed page.
+      -g, --highlight               Mark the changed areas on your build with a translucent green wash.
+                                    Off by default, the pages are left as they are.
+
+    With '--highlight', changed areas are marked with a translucent green box on the right-hand
+    (your build) page.
 
     Examples:
       ./tools/compare_pages.sh en -r 1
@@ -30,6 +43,10 @@ help() {
           - Then because there is the '--single-page' parameter, it combines them to a single file 'en-all.png'.
           - It will use 'printable_en.pdf' from the repository as baseline because '--printable' was specified.
             It would use 'main_en.pdf' if this parameter was omitted.
+
+      ./tools/compare_pages.sh pl --all
+          - This will render every page of both documents and save only the pages that
+            actually differ, one image per page.
 
       ./tools/compare_pages.sh fr -r 2,5:7,8-9:6
           This will produce the following 4 images:
@@ -176,6 +193,41 @@ get_actual_filename() {
   fi
 }
 
+page_count() {
+  pdfinfo "$1" 2>/dev/null | awk '/^Pages:/ {print $2}'
+}
+
+# Blocks until a page is fully rendered, then prints its filename. pdftoppm
+# writes pages in order, so a page is done once the next one appears - and for
+# the last page, once the renderer itself is gone.
+wait_for_page() {
+  local prefix="$1"
+  local page="$2"
+  local pid="$3"
+  local still_rendering current next
+
+  while :; do
+    still_rendering=0
+    kill -0 "$pid" 2>/dev/null && still_rendering=1
+
+    current=$(get_actual_filename "$tmp_dir" "$prefix" "$page")
+    next=$(get_actual_filename "$tmp_dir" "$prefix" $((page + 1)))
+
+    if [[ -n "$current" && -n "$next" ]]; then
+      echo "$current"
+      return 0
+    fi
+
+    if [[ "$still_rendering" -eq 0 ]]; then
+      echo "$current"
+      [[ -n "$current" ]]
+      return
+    fi
+
+    sleep 0.2
+  done
+}
+
 case "$(uname -s)" in
   Darwin*)
     open=open
@@ -196,6 +248,9 @@ range=""
 printable=0
 single_page=0
 open_directory=0
+all_pages=0
+debug=0
+highlight=0
 
 while [[ "$1" != "" ]]; do
   case $1 in
@@ -206,11 +261,20 @@ while [[ "$1" != "" ]]; do
       shift
       range=$1
       ;;
+    -a | --all )
+      all_pages=1
+      ;;
     -s | --single-page )
       single_page=1
       ;;
     -o | --open )
       open_directory=1
+      ;;
+    -d | --debug )
+      debug=1
+      ;;
+    -g | --highlight )
+      highlight=1
       ;;
     * )
       help
@@ -219,8 +283,24 @@ while [[ "$1" != "" ]]; do
   shift
 done
 
-if [[ -z "$LANGUAGE" || -z "$range" ]]; then
+if [[ -z "$LANGUAGE" ]] || [[ -z "$range" && "$all_pages" -eq 0 ]]; then
   help
+fi
+
+if [[ -n "$range" && "$all_pages" -eq 1 ]]; then
+  echo "Error: '--range' and '--all' cannot be used together."
+  exit 2
+fi
+
+if [[ ! -f "main_${LANGUAGE}.pdf" ]]; then
+  echo "❌ There is no 'main_${LANGUAGE}.pdf' to compare against. Build it first,"
+  echo "   or pass the language you actually mean - without it '${LANGUAGE}' is assumed."
+  exit 1
+fi
+
+if [[ $highlight == 1 && -z "$HOMM3BG_CONTAINER" ]]; then
+  uv venv --allow-existing
+  uv pip install pymupdf opencv-python numpy
 fi
 
 echo "Checking if there is the base file for comparison..."
@@ -231,40 +311,90 @@ trap 'rm -rf -- "$tmp_dir"' EXIT
 
 declare -A moved
 declare -a pages
+
+if [[ "$all_pages" -eq 1 ]]; then
+  base_pages=$(page_count "$base_file")
+  own_pages=$(page_count "main_${LANGUAGE}.pdf")
+  last_page=$(( base_pages < own_pages ? base_pages : own_pages ))
+
+  if [[ "$base_pages" -ne "$own_pages" ]]; then
+    echo "Note: base file has ${base_pages} pages, main_${LANGUAGE}.pdf has ${own_pages}. Comparing the first ${last_page}."
+  fi
+
+  for ((page=1; page<=last_page; page++)); do
+    pages+=($page)
+  done
+fi
+
 parse_pages "$range"
 
 for page in "${pages[@]}"; do
   echo "Making images of ${base_file} and main_${LANGUAGE}.pdf for page ${page}..."
-  pdftoppm "${base_file}" "${tmp_dir}/aa" -f "${page}" -l "${page}" -png &
-  pdftoppm "main_${LANGUAGE}.pdf" "${tmp_dir}/bb" -f "${moved[${page}]:-${page}}" -l "${moved[${page}]:-${page}}" -png &
-done
-
-wait
-
-for page in "${pages[@]}"; do
-  echo "Combining pages $(printf %02d $page)..."
-
-  # Get actual filenames generated by pdftoppm
-  aa_file=$(get_actual_filename "$tmp_dir" "aa" "$page")
-  bb_file=$(get_actual_filename "$tmp_dir" "bb" "${moved[${page}]:-${page}}")
-
-  if [[ -n "$aa_file" && -n "$bb_file" ]]; then
-    montage "${tmp_dir}/${aa_file}" "${tmp_dir}/${bb_file}" -tile 2x1 -geometry +0+0 "${tmp_dir}/${LANGUAGE}-$(printf %02d $page).png" && \
-    rm "${tmp_dir}/${aa_file}" "${tmp_dir}/${bb_file}" &
+  if [[ $highlight == 1 ]]; then
+    if [[ -n "$HOMM3BG_CONTAINER" ]]; then
+      python3 tools/pdf_screenshot_diff.py "${base_file}" "main_${LANGUAGE}.pdf" \
+        --output-dir ${tmp_dir} --before-page $page --after-page "${moved[${page}]:-${page}}" \
+        --force-output &
+    else
+      uv run tools/pdf_screenshot_diff.py "${base_file}" "main_${LANGUAGE}.pdf" \
+        --output-dir ${tmp_dir} --before-page $page --after-page "${moved[${page}]:-${page}}" \
+        --force-output &
+    fi
   else
-    echo "Warning: Could not find generated files for page $page"
+    pdftoppm "${base_file}" "${tmp_dir}/aa" -f "${page}" -l "${page}" -png &
+    pdftoppm "main_${LANGUAGE}.pdf" "${tmp_dir}/bb" -f "${moved[${page}]:-${page}}" -l "${moved[${page}]:-${page}}" -png &
   fi
 done
 
-if [[ "$single_page" -eq 1 ]]; then
-  wait
-  montage ${tmp_dir}/${LANGUAGE}* -tile "1x" -geometry +0+0 ${tmp_dir}/${LANGUAGE}-all.png
-fi
+wait
+
+declare -a skipped_pages
+declare -a changed_pages
+page_index=0
+page_total=${#pages[@]}
+
+for page in "${pages[@]}"; do
+  page_index=$((page_index + 1))
+
+  if [[ "$all_pages" -eq 1 ]]; then
+    aa_file=$(wait_for_page "aa" "$page" "$aa_pid")
+    bb_file=$(wait_for_page "bb" "$page" "$bb_pid")
+  else
+    aa_file=$(get_actual_filename "$tmp_dir" "aa" "$page")
+    bb_file=$(get_actual_filename "$tmp_dir" "bb" "${moved[${page}]:-${page}}")
+  fi
+
+  if [[ -z "$aa_file" || -z "$bb_file" ]]; then
+    echo "⚠️ Could not find generated files for page $page"
+    continue
+  fi
+
+  # Written straight to its final place, so that a page reported as saved is on
+  # disk instead of waiting for the rest of the run to finish.
+  comparison="${screenshots_dir}/${LANGUAGE}-$(printf %02d $page).png"
+
+  {
+    montage "${tmp_dir}/${aa_file}" "${tmp_dir}/${bb_file}" -tile 2x1 -geometry +0+0 "$comparison" && \
+    rm "${tmp_dir}/${aa_file}" "${tmp_dir}/${bb_file}" && \
+    [[ "$debug" -eq 1 ]] && ${open} "$comparison" >/dev/null 2>&1
+  } &
+done
 
 wait
 
-mkdir -p "${screenshots_dir}"
-mv ${tmp_dir}/${LANGUAGE}* "${screenshots_dir}"
+if [[ "$all_pages" -eq 1 ]]; then
+  echo "Unchanged pages skipped (${#skipped_pages[@]}): ${skipped_pages[*]:-none}"
+  echo "Pages with differences (${#changed_pages[@]}): ${changed_pages[*]:-none}"
+
+  if [[ "${#changed_pages[@]}" -eq 0 ]]; then
+    echo "Nothing to show, both documents look the same."
+    exit 0
+  fi
+fi
+
+if [[ "$single_page" -eq 1 ]]; then
+  montage ${screenshots_dir}/${LANGUAGE}-[0-9]*.png -tile "1x" -geometry +0+0 ${screenshots_dir}/${LANGUAGE}-all.png
+fi
 
 echo "Done. Images saved to ${screenshots_dir} directory."
 
